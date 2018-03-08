@@ -9,3 +9,6 @@ InciManager e4b
 
 # Descripción
 Módulo encargado de tramitar las incidencias que serán enviadas por los agentes
+
+#Detalles técnicos
+Se utiliza la librería commons-io 2.4 para acceder a Apache Kafka. Documentación en http://commons.apache.org/proper/commons-io/
