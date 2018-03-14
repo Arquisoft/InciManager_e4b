@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import asw.database.status.Status;
+
 @Entity
 public class Incidence {
 	@Id
@@ -21,6 +23,11 @@ public class Incidence {
 	private String localizacion;
 	private List<String> tags; // Etiquetas
 	private HashMap<String, String> campos; // Campos propiedad valor
+
+	// Campos añadidos
+	private Status status;
+	private String comments;
+	private Date expirationDate;
 
 	/**
 	 * Consturctor el cual hace uso de la propiedad campos
@@ -74,7 +81,46 @@ public class Incidence {
 
 	}
 
+	/**
+	 * Constructor completo (Construido por si acaso)
+	 * 
+	 * @param id
+	 * @param user
+	 * @param password
+	 * @param incidenceName
+	 * @param descripcion
+	 * @param localizacion
+	 * @param tags
+	 * @param campos
+	 * @param status
+	 * @param comments
+	 * @param expirationDate
+	 */
+	public Incidence(Long id, String user, String password, String incidenceName, String descripcion,
+			String localizacion, List<String> tags, HashMap<String, String> campos, Status status, String comments,
+			Date expirationDate) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.password = password;
+		this.incidenceName = incidenceName;
+		this.descripcion = descripcion;
+		this.localizacion = localizacion;
+		this.tags = tags;
+		this.campos = campos;
+		this.status = status;
+		this.comments = comments;
+		this.expirationDate = expirationDate;
+	}
+
+	/**
+	 * Constructor vacio para JPA
+	 */
 	public Incidence() {
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getUser() {
@@ -133,8 +179,28 @@ public class Incidence {
 		this.campos = campos;
 	}
 
-	public Long getId() {
-		return id;
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 }
