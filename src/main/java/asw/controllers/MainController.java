@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import asw.producers.KafkaProducer;
+import asw.database.entities.*;
 
 @Controller
 public class MainController {
@@ -14,16 +15,16 @@ public class MainController {
     @Autowired
     private KafkaProducer kafkaProducer;
 
-//    @RequestMapping("/")
-//    public String landing(Model model) {
-//    	model.addAttribute("message", new Message());
-//        return "index";
-//    }
+    @RequestMapping("/")
+    public String landing(Model model) {
+    	model.addAttribute("message", new Message());
+        return "index";
+    }
     
-//    @RequestMapping("/send")
-//    public String send(Model model, @ModelAttribute Message message) {
-//        kafkaProducer.send("exampleTopic", message.getMessage());
-//        return "redirect:/";
-//    }
+    @RequestMapping("/send")
+    public String send(Model model, @ModelAttribute Message message) {
+        kafkaProducer.send("exampleTopic", message.getMessage());
+        return "redirect:/";
+    }
 
 }

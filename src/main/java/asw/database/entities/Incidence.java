@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import asw.database.location.Location;
 import asw.database.status.Status;
 
 @Entity
@@ -20,7 +22,8 @@ public class Incidence {
 	private String password;
 	private String incidenceName;
 	private String descripcion;
-	private String localizacion;
+	@Embedded
+	private Location localizacion;
 	private List<String> tags; // Etiquetas
 	private HashMap<String, String> campos; // Campos propiedad valor
 
@@ -42,7 +45,7 @@ public class Incidence {
 	 * 
 	 */
 	public Incidence(Long id, String user, String password, String incidenceName, String descripcion,
-			String localizacion, List<String> tags, HashMap<String, String> campos) {
+			Location localizacion, List<String> tags, HashMap<String, String> campos) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -69,7 +72,7 @@ public class Incidence {
 	 * @param expeditionDate
 	 */
 	public Incidence(Long id, String user, String password, String incidenceName, String descripcion,
-			String localizacion, List<String> tags) {
+			Location localizacion, List<String> tags) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -97,7 +100,7 @@ public class Incidence {
 	 * @param expirationDate
 	 */
 	public Incidence(Long id, String user, String password, String incidenceName, String descripcion,
-			String localizacion, List<String> tags, HashMap<String, String> campos, Status status, String comments,
+			Location localizacion, List<String> tags, HashMap<String, String> campos, Status status, String comments,
 			Date expirationDate) {
 		super();
 		this.id = id;
@@ -155,11 +158,11 @@ public class Incidence {
 		this.descripcion = descripcion;
 	}
 
-	public String getLocalizacion() {
+	public Location getLocalizacion() {
 		return localizacion;
 	}
 
-	public void setLocalizacion(String localizacion) {
+	public void setLocalizacion(Location localizacion) {
 		this.localizacion = localizacion;
 	}
 
@@ -202,5 +205,39 @@ public class Incidence {
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Incidence other = (Incidence) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Incidence [incidenceName=" + incidenceName + ", descripcion=" + descripcion + ", localizacion="
+				+ localizacion + ", tags=" + tags + ", campos=" + campos + ", status=" + status + ", comments="
+				+ comments + ", expirationDate=" + expirationDate + "]";
+	}
+	
+	
 
 }
