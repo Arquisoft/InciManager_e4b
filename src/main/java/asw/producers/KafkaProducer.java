@@ -1,5 +1,7 @@
 package asw.producers;
 
+import javax.annotation.ManagedBean;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -7,7 +9,10 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import javax.annotation.ManagedBean;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import asw.database.entities.Incidence;
 
 
 @ManagedBean
@@ -18,6 +23,15 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    public void send(String topic, Incidence incidence) {
+    	ObjectMapper mapper = new ObjectMapper();
+    	  
+    	ObjectWriter json = mapper.writerWithDefaultPrettyPrinter();
+    			
+    	this.send(topic, json.writeValueAsString(incidence));
+    	
+    }
+    
     public void send(String topic, String data) {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
