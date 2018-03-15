@@ -23,12 +23,12 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void send(Incidence incidence) {
+    public void send(String topic, Incidence incidence) {
     	ObjectMapper mapper = new ObjectMapper();
     	  
     	ObjectWriter json = mapper.writerWithDefaultPrettyPrinter();
     			
-    	this.send("Incidencia", json.writeValueAsString(incidence));
+    	this.send(topic, json.writeValueAsString(incidence));
     	
     }
     
