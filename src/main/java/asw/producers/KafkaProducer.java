@@ -9,6 +9,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -28,7 +29,12 @@ public class KafkaProducer {
     	  
     	ObjectWriter json = mapper.writerWithDefaultPrettyPrinter();
     			
-    	this.send(topic, json.writeValueAsString(incidence));
+    	try {
+			this.send(topic, json.writeValueAsString(incidence));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
     
