@@ -32,7 +32,7 @@ public class KafkaProducer {
     	
     }
     
-    public void send(String topic, String data) {
+    public void send(String topic, String data)  throws JsonProcessingException  {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
