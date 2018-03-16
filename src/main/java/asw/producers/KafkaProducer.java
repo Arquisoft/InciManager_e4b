@@ -24,7 +24,7 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void send(String topic, Incidence incidence) {
+    public void send(String topic, Incidence incidence) throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
     	  
     	ObjectWriter json = mapper.writerWithDefaultPrettyPrinter();
@@ -38,7 +38,7 @@ public class KafkaProducer {
     	
     }
     
-    public void send(String topic, String data) {
+    public void send(String topic, String data)  {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
