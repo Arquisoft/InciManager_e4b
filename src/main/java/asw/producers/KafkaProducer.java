@@ -9,6 +9,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -23,7 +24,7 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void send(String topic, Incidence incidence) {
+    public void send(String topic, Incidence incidence) throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
     	  
     	ObjectWriter json = mapper.writerWithDefaultPrettyPrinter();
@@ -32,7 +33,7 @@ public class KafkaProducer {
     	
     }
     
-    public void send(String topic, String data)  throws JsonProcessingException  {
+    public void send(String topic, String data)  {
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, data);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
