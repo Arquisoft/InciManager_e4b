@@ -32,7 +32,6 @@ public class KafkaProducer {
     	try {
 			this.send(topic, json.writeValueAsString(incidence));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	

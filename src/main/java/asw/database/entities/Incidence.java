@@ -3,7 +3,9 @@ package asw.database.entities;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +26,10 @@ public class Incidence {
 	private String descripcion;
 	@Embedded
 	private Location localizacion;
+	@ElementCollection
 	private List<String> tags; // Etiquetas
-	private HashMap<String, String> campos; // Campos propiedad valor
+	@ElementCollection
+	private Map<String, String> campos; // Campos propiedad valor
 
 	// Campos añadidos
 	private Status status;
@@ -174,7 +178,7 @@ public class Incidence {
 		this.tags = tags;
 	}
 
-	public HashMap<String, String> getCampos() {
+	public Map<String, String> getCampos() {
 		return campos;
 	}
 
