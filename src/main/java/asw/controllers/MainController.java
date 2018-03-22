@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import asw.producers.KafkaProducer;
 import asw.database.entities.*;
 
@@ -19,6 +21,11 @@ public class MainController {
     public String landing(Model model) {
     	model.addAttribute("message", new Message());
         return "index";
+    }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
+        return "login";
     }
     
     @RequestMapping("/send")

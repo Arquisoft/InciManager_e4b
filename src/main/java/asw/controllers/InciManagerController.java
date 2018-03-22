@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import asw.database.IncidenceRepository;
 import asw.database.entities.Incidence;
 import asw.database.location.Location;
 import asw.database.status.Status;
@@ -18,9 +17,6 @@ import asw.services.IncidenceService;
 public class InciManagerController {
 	
 	@Autowired
-	private IncidenceRepository incidencesRepository;
-
-	@Autowired
 	private IncidenceService inciService;
 	
 	@RequestMapping(value = "/incidence/add")
@@ -29,6 +25,7 @@ public class InciManagerController {
 		model.addAttribute("loc", new Location());
 		return "/incidence/add";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/incidence/add",  method = RequestMethod.POST)
 	private String POSTaddIncidence(@ModelAttribute Incidence inci, @ModelAttribute Location loc) {

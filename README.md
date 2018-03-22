@@ -27,8 +27,17 @@ https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.1/kafka_2.11-1.0.1.tgz
 
 ### Desde el directorio de proyecto para desplegar sobre kafka
 mvn spring-boot:run
+
 mvn test
 
 ### Puertos donde se despliega
 ParticipationSystem -> localhost:8080
+
 Dashboard -> localhost:8090
+
+### Agente de prueba
+Email: paco@hotmail.com
+
+Password: 123456
+
+Kind: Person
