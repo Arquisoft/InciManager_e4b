@@ -17,6 +17,11 @@ public class MainController {
     @Autowired
     private KafkaProducer kafkaProducer;
 
+    @RequestMapping("/index")
+    public String index(Model model) {
+        return "redirect:/";
+    }
+    
     @RequestMapping("/")
     public String landing(Model model) {
     	model.addAttribute("message", new Message());

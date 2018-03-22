@@ -1,5 +1,7 @@
 package asw.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,12 +21,6 @@ public class InciManagerController {
 	@Autowired
 	private IncidenceService inciService;
 	
-	@RequestMapping(value = "/incidence/add")
-	private String GETaddIncidence(Model model) {
-		model.addAttribute("inci", new Incidence());
-		model.addAttribute("loc", new Location());
-		return "/incidence/add";
-	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/incidence/add",  method = RequestMethod.POST)
@@ -34,6 +30,17 @@ public class InciManagerController {
 		inciService.addIncidence(inci);
 		return "Incidencia con id: " +inci.getId()+" creada";
 	}
-	
+
+	@RequestMapping(value = "/incidence/add")
+	private String GETaddIncidence(HttpSession session, Model model) {
+		if(session.getAttribute("agent")==null) {
+			
+			return "redirect:/login";
+		}
+		
+		model.addAttribute("inci", new Incidence());
+		model.addAttribute("loc", new Location());
+		return "/incidence/add";
+	}
 	
 }

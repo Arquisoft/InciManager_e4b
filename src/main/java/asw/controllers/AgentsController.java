@@ -19,9 +19,20 @@ public class AgentsController {
 	@Autowired
 	private AgentService agentService;
 
+
+
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logout(HttpSession session, Model model) {
+		
+		session.setAttribute("agent", null);
+		
+		return "redirect:/";
+		
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String getLogin(HttpSession session, @RequestParam String userid, @RequestParam String password,@RequestParam String kind,
-			Model model) {
+	public String getLogin(HttpSession session, @RequestParam String userid, @RequestParam String password,
+			@RequestParam String kind, Model model) {
 
 		if (Assert.isUserIdEmpty(userid) || Assert.isPasswordEmpty(password) || Assert.isKindEmpty(kind)) {
 			return "login";
@@ -33,7 +44,7 @@ public class AgentsController {
 			System.out.println("El agente no existe");
 			return "login";
 		}
-		
+
 		if (!Assert.isPasswordCorrect(password, agent)) {
 			System.out.println("Contraseña incorrecta");
 			return "login";
@@ -43,4 +54,5 @@ public class AgentsController {
 
 		return "incidence/add";
 	}
+
 }

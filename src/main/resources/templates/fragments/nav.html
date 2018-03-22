@@ -5,6 +5,7 @@
 		<div>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#myNavbar">
+
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
@@ -21,13 +22,21 @@
 				<form action="/" style="display: inline">
 					<input type="submit" value="Home" class="btn-primary" />
 				</form>
-				<form action="/incidence/add" style="display: inline">
+
+				<form action="/incidence/add" style="display: inline"
+					th:if="${session.agent!=null}">
 					<input type="submit" value="Crear incidencia" class="btn-primary" />
 				</form>
-				<form action="/login" style="display: inline">
+
+				<form action="/login" style="display: inline"
+					th:if="${session.agent==null}">
 					<input type="submit" value="Iniciar sesión" class="btn-primary" />
 				</form>
 
+				<form action="/logout" method="post" style="display: inline"
+					th:if="${session.agent!=null}">
+					<input type="submit" value="Desconectarse" class="btn-primary" />
+				</form>
 			</div>
 		</nav>
 	</div>
