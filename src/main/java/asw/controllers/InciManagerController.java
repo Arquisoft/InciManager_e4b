@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sun.research.ws.wadl.Method;
-
 import asw.database.IncidenceRepository;
 import asw.database.entities.Incidence;
 import asw.database.location.Location;
@@ -18,6 +16,7 @@ import asw.services.IncidenceService;
 
 @Controller
 public class InciManagerController {
+	
 	@Autowired
 	private IncidenceRepository incidencesRepository;
 
