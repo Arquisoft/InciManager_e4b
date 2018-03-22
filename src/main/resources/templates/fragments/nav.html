@@ -27,6 +27,11 @@
 					th:if="${session.agent!=null}">
 					<input type="submit" value="Crear incidencia" class="btn-primary" />
 				</form>
+				
+				<form action="/incidence/chatbot" style="display: inline"
+					th:if="${session.agent?.kind?.equals('Person')}">
+					<input type="submit" value="Ir a chat-bot" class="btn-primary" />
+				</form>
 
 				<form action="/login" style="display: inline"
 					th:if="${session.agent==null}">

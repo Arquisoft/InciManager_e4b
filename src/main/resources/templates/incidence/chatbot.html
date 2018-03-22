@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+
+	<nav th:replace="fragments/nav" />
+
+	<br />
+	<br />
+
+	<div class="container">
+
+		<div class="form-group">
+
+			<form id="answerform" class="form-horizontal" method="post"
+				action="/incidence/chatbot">
+				<label for="answer">Responda:</label>
+				<textarea class="form-control" rows="4" id="answer" name="answer"
+					form="answerform"></textarea>
+				<input type="submit" style="float: right;" value="Enviar respuesta"
+					class="btn-primary" />
+			</form>
+
+		</div>
+
+
+		<br /> <br />
+
+		<div style="overflow-y: scroll; height: 400px">
+			<ul class="list-group">
+				<div th:each="msg : ${messages}">
+					<li class="list-group-item" th:text="${msg}"></li>
+				</div>
+			</ul>
+
+		</div>
+
+
+
+	</div>
+	<footer th:replace="fragments/footer" />
+
+</body>
+</html>
