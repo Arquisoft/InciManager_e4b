@@ -32,9 +32,9 @@ public class AgentsController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String getLogin(HttpSession session, @RequestParam String userid, @RequestParam String password,
-			@RequestParam String kind, Model model) {
+			 Model model) {
 
-		if (Assert.isUserIdEmpty(userid) || Assert.isPasswordEmpty(password) || Assert.isKindEmpty(kind)) {
+		if (Assert.isUserIdEmpty(userid) || Assert.isPasswordEmpty(password)) {
 			return "login";
 		}
 

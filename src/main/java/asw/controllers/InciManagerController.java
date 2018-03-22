@@ -49,6 +49,8 @@ public class InciManagerController {
 		inci.setPassword(agent.getPassword());
 		if(filterBySenderKind.filtrar(inci))
 			inciService.addIncidence(inci);
+		else
+			return "redirect:/";
 		
 		model.addAttribute("inciId", inci.getId());
 
