@@ -4,13 +4,12 @@
 <body>
 
 	<nav th:replace="fragments/nav" />
-	
-	<div class="container" style="text-align: center">
-		<h2>Bienvenidos a InciManager</h2>
-		<p>Navegue utilizando el menú superior para enviar una incidencia</p>
+	<br/><br/>
+	<div class="alert alert-success" style="text-align: center">
+		<p th:text="${'Incidencia con id: '+inciId+' creada'}"></p>
 	</div>
-	
+
 	<footer th:replace="fragments/footer" />
-	
+
 </body>
 </html>
