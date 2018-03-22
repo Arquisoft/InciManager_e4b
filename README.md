@@ -22,6 +22,7 @@ https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.1/kafka_2.11-1.0.1.tgz
 
 ### Desde el directorio kafka
 -Comando: bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
 -Comando: bin\windows\kafka-server-start.bat config\server.properties
 
 ### Desde el directorio de proyecto para desplegar sobre kafka
