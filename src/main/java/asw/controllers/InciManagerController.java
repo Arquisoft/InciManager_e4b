@@ -8,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import asw.database.entities.Agent;
 import asw.database.entities.Incidence;
 import asw.database.location.Location;
 import asw.database.status.Status;
+import asw.filters.FilterBySenderKind;
 import asw.services.IncidenceService;
 
 @Controller
@@ -21,6 +21,9 @@ public class InciManagerController {
 
 	@Autowired
 	private IncidenceService inciService;
+	
+	@Autowired
+	private FilterBySenderKind filterBySenderKind;
 
 	@RequestMapping(value = "/incidence/add")
 	private String GETaddIncidence(HttpSession session, Model model) {
@@ -44,8 +47,9 @@ public class InciManagerController {
 		inci.setStatus(Status.ABIERTA);
 		inci.setUser(agent.getEmail());
 		inci.setPassword(agent.getPassword());
-		inciService.addIncidence(inci);
-
+		if(filterBySenderKind.filtrar(inci))
+			inciService.addIncidence(inci);
+		
 		model.addAttribute("inciId", inci.getId());
 
 		return "/incidence/confirm";
